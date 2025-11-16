@@ -7,7 +7,7 @@ BASE_URL = "http://localhost:8001"
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="sk-or-******"
+    api_key=""
 )
 
 MODEL_NAME = "google/gemini-2.0-flash-exp:free"
