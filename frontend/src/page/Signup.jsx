@@ -8,8 +8,7 @@ const Signup = () => {
     pinEmbedding: null
   });
 
-  const [status, setStatus] = useState("");  // <-- Status text
-
+  const [status, setStatus] = useState("");  // Status text
   const mediaRecorderRef = useRef(null);
   const audioChunks = useRef([]);
 
@@ -34,7 +33,6 @@ const Signup = () => {
 
     mediaRecorderRef.current.start();
 
-    // Auto stop after 4 seconds
     setTimeout(() => {
       mediaRecorderRef.current.stop();
       setStatus("⏳ Processing your audio...");
@@ -95,34 +93,55 @@ const Signup = () => {
   };
 
   return (
-    <div style={{ padding: 40 }}>
-      <h1>🎤 Voice Signup</h1>
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-purple-600 via-blue-500 to-teal-400 px-4">
+      <div className="bg-white rounded-xl shadow-xl p-10 max-w-md w-full">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">🎤 Voice Signup</h1>
 
-      <input
-        placeholder="Name"
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      /><br /><br />
+        {/* Name */}
+        <input
+          placeholder="Name"
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      /><br /><br />
+        {/* Email */}
+        <input
+          placeholder="Email"
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
 
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      /><br /><br />
+        {/* Password */}
+        <input
+          placeholder="Password"
+          type="password"
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
 
-      <button onClick={startPinRecording}>🎙 Record Voice PIN</button>
-      <br /><br />
+        {/* Record PIN */}
+        <button
+          onClick={startPinRecording}
+          className="w-full py-3 mb-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 flex justify-center items-center gap-2"
+        >
+          🎙 Record Voice PIN
+        </button>
 
-      <button onClick={signup}>Signup</button>
+        {/* Signup */}
+        <button
+          onClick={signup}
+          className="w-full py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700 transition duration-300"
+        >
+          Signup
+        </button>
 
-      {/* STATUS UI */}
-      <p style={{ marginTop: 20, fontWeight: "bold", color: "blue" }}>
-        {status}
-      </p>
+        {/* Status */}
+        {status && (
+          <p className="mt-6 text-center text-gray-800 font-medium">
+            {status}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
